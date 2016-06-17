@@ -1,0 +1,10 @@
+Deletes a resource
+
+HTTP Method: DELETE
+
+Required headers: If-Match
+
+Result status codes:
+204 - Resource has been successfully deleted
+404 - Resource not found
+412 - A value of the 'If-Match' header does not match current resource state etag.

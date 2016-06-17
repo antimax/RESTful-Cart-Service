@@ -1,0 +1,25 @@
+Shopping cart RESTful service. Discover API navigating trough link resource relation links explained in the Hypertext Application Language (HAL)
+specification: http://stateless.co/hal_specification.html. Use HEAD instead of GET or GET + 'If-None-Matches' header to check whether a resource exists or to
+validate a cached resource state.
+
+Resource state response content type: application/hal+json
+
+To start work with API you need to create a shopping cart
+
+HTTP Method: POST
+
+Request content type: application/json
+
+Sample request body:
+
+1. { "items": [ { "quantity": 10, "title": "Towel" }, { "quantity": 3, "title": "A pen" } ]} - creates a cart with two items
+2. { "items": [] } - creates an empty cart
+3. { } - creates an empty cart
+
+Validation details:
+title - non-empty string, quantity - positive integer, all other fields are dropped off.
+'items' array can be empty.
+
+Result status codes:
+200 - A cart has been successfully created, response body contains a new state
+422 - Invalid item data, see the response body for details

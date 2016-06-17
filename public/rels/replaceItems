@@ -1,0 +1,24 @@
+Adds items to a cart
+
+HTTP Method: PUT
+
+Required headers: If-Match
+
+Request content type: application/json
+
+Response content type: application/hal+json
+
+Sample request body:
+
+1. { "items": [ { "quantity": 10, "title": "Towel" }, { "quantity": 3, "title": "A pen" } ]}
+2. { "items": [] }
+
+Validation details:
+title - non-empty string, quantity - positive integer, all other fields are dropped off.
+'items' array can be empty.
+
+Result status codes:
+200 - Items has been successfully replaced in a cart, response body contains a new cart state
+404 - Resource not found
+412 - A value of the 'If-Match' header does not match current cart state etag
+422 - Invalid item data, see the response body for details

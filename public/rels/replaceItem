@@ -1,0 +1,22 @@
+Replaces item in a cart
+
+HTTP Method: PATCH
+
+Required headers: If-Match
+
+Request content type: application/json
+
+Response content type: application/hal+json
+
+Sample request body:
+
+1. { "item": { "quantity": 10, "title": "Towel" } }
+
+Validation details:
+title - non-empty string, quantity - positive integer, all other fields are dropped off.
+
+Result status codes:
+200 - Items has been successfully replaced, response body contains a new cart item state
+404 - Resource not found
+412 - A value of the 'If-Match' header does not match current cart item state etag
+422 - Invalid item data, see the response body for details
